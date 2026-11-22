@@ -1,0 +1,30 @@
+:host { all: initial; color-scheme: light; font: 16px/1.6 system-ui, 'Segoe UI', sans-serif; color: #263B32; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #F7F8F2; color: #263B32; font: 16px/1.6 system-ui, 'Segoe UI', sans-serif; }
+.panel { color: #263B32; background: #F7F8F2; border: 2px solid #61766A; border-radius: 12px; padding: 20px; width: min(520px, calc(100vw - 32px)); text-align: left; overflow-wrap: anywhere; box-shadow: 0 4px 18px #263B3226; }
+.confirmation { position: fixed; right: 16px; bottom: 16px; z-index: 2147483647; max-height: calc(100vh - 32px); overflow: auto; }
+.result { display: inline-block; vertical-align: top; max-width: 100%; }
+h1,h2 { font: 700 22px/1.3 system-ui, 'Segoe UI', sans-serif; margin: 0 0 12px; color: #263B32; }
+p { margin: 10px 0; }
+.preview { white-space: pre-wrap; max-height: 150px; overflow: auto; padding: 12px; border: 1px solid #61766A; border-radius: 6px; }
+.valid { color: #1B6E3C; }
+.invalid { color: #B3261E; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+button { font: 600 16px/1.4 system-ui, 'Segoe UI', sans-serif; cursor: pointer; min-height: 44px; padding: 10px 16px; color: #F7F8F2; background: #315E46; border: 2px solid #315E46; border-radius: 6px; }
+button.secondary { background: #F7F8F2; color: #315E46; }
+button:disabled { cursor: default; color: #475B50; background: #E4EBE3; border-color: #61766A; }
+:focus-visible { outline: 3px solid #245D87; outline-offset: 3px; }
+.caa-text { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px 14px; margin: 12px 0 16px; font-size: 20px; line-height: 1.4; }
+.caa-word { display: inline-flex; flex-direction: column; align-items: center; justify-content: flex-end; text-align: center; }
+.caa-slot { display: flex; align-items: flex-end; justify-content: center; height: 76px; }
+.caa-slot img { display: block; width: 72px; height: 72px; object-fit: contain; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.credits { margin-bottom: 0; }
+small,.small { font-size: 14px; }
+label { display: block; font-weight: 600; margin-top: 12px; }
+input[type=range] { width: 100%; min-height: 44px; accent-color: #315E46; }
+a { color: #245D87; text-decoration: underline; }
+.popup { width: 360px; max-width: 100%; padding: 20px; }
+details { margin-top: 16px; }
+summary { cursor: pointer; padding: 8px 0; }
+@media (forced-colors: active) { .panel,button { border: 2px solid ButtonText; } }

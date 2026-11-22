@@ -1,0 +1,15 @@
+{
+  "name": "allycaa",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/frontend.test.cjs",
+    "test:browsers": "playwright test"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "@playwright/test": "1.58.0",
+    "jsdom": "^26.0.0"
+  }
+}

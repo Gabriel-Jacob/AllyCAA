@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "AllyCAA",
+  "version": "1.0.0",
+  "description": "Adapte textos para pictogramas CAA.",
+  "permissions": ["activeTab"],
+  "host_permissions": ["http://127.0.0.1/*"],
+  "action": {"default_popup": "popup.html", "default_title": "AllyCAA"},
+  "background": {"service_worker": "background.js"},
+  "content_scripts": [{"matches": ["http://*/*", "https://*/*"], "css": ["highlight.css"], "js": ["shared.js", "ui-style.js", "dom.js", "tts.js", "content.js"], "run_at": "document_idle", "all_frames": false}],
+  "content_security_policy": {"extension_pages": "script-src 'self'; object-src 'none'"},
+  "icons": {"48": "icons/icon48.png", "128": "icons/icon128.png"}
+}
