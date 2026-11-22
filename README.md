@@ -1,6 +1,6 @@
 # AllyCAA
 
-Extensão de navegador (Edge e Firefox) que adapta trechos de texto de até 100 caracteres para pictogramas de Comunicação Aumentativa e Alternativa (CAA), usando IA e os pictogramas do ARASAAC. Projeto de TCC do curso de Análise e Desenvolvimento de Sistemas.
+Extensão de navegador (Edge) que adapta trechos de texto de até 100 caracteres para pictogramas de Comunicação Aumentativa e Alternativa (CAA), usando IA e os pictogramas do ARASAAC. Projeto de TCC do curso de Análise e Desenvolvimento de Sistemas.
 
 ## Como funciona
 
@@ -14,13 +14,13 @@ Extensão de navegador (Edge e Firefox) que adapta trechos de texto de até 100 
 4. A extensão mostra a frase original com cada pictograma acima da sua palavra. Palavras sem pictograma ficam com o espaço em branco.
 5. O usuário pode **Ouvir** (com barra de progresso por palavra), **Interromper** e **Voltar ao texto original**. A tecla Escape também fecha a adaptação.
 
-As imagens dos pictogramas são carregadas do site do ARASAAC. O contrato da API está descrito em `backend/app/models.py` e na documentação interativa do backend (`/docs`).
+As imagens dos pictogramas são carregadas do site do ARASAAC. O contrato da API está descrito em `backend/app/models.py`.
 
 ## Requisitos
 
 - Python 3.11 ou superior
 - Node.js 20 ou superior
-- Edge, ou Firefox 140 ou superior
+- Edge 140 ou superior
 - Chave da Groq com acesso ao modelo `openai/gpt-oss-120b`
 - Conexão com a internet
 
@@ -36,17 +36,13 @@ python -m venv .venv
 Copy-Item backend/.env.example backend/.env
 ```
 
-Edite `backend/.env` e preencha `GROQ_API_KEY`. Nunca coloque a chave na extensão nem a envie ao repositório (`.env` já está no `.gitignore`).
+Edite `backend/.env` e preencha `GROQ_API_KEY`.
 
 ## Executar o backend
 
 ```powershell
 .venv/Scripts/python.exe -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 --reload --no-access-log
 ```
-
-Confira `http://127.0.0.1:8000/health`. O campo `groq_configured` indica apenas se há uma chave configurada, sem validar o acesso à conta. A documentação interativa fica em `http://127.0.0.1:8000/docs`.
-
-No VS Code, também é possível iniciar pelo painel **Executar e Depurar** (configuração "AllyCAA — Backend").
 
 ## Gerar e instalar a extensão
 
@@ -56,7 +52,7 @@ Em outro terminal, na pasta `AllyCAA`:
 npm run build
 ```
 
-O comando cria `dist/edge` e `dist/firefox` (a pasta `dist/` não faz parte do repositório). O build usa o backend em `http://127.0.0.1:8000`; para outro endereço use `node scripts/build.mjs --backend https://seu-backend`.
+O comando cria `dist/edge` (a pasta `dist/` não faz parte do repositório). O build usa o backend em `http://127.0.0.1:8000`; para outro endereço use `node scripts/build.mjs --backend https://seu-backend`.
 
 ### Edge
 
@@ -65,14 +61,6 @@ O comando cria `dist/edge` e `dist/firefox` (a pasta `dist/` não faz parte do r
 3. Recarregue uma página HTTP ou HTTPS comum.
 4. Selecione até 100 caracteres e confirme em **Traduzir para CAA**.
 
-### Firefox
-
-1. Abra `about:debugging#/runtime/this-firefox`.
-2. Escolha **Carregar extensão temporária** e abra `dist/firefox/manifest.json`.
-3. Se necessário, permita o acesso ao site atual no menu da extensão.
-4. Recarregue a página e siga o mesmo fluxo. A instalação temporária termina ao fechar o navegador.
-
-Depois de atualizar ou desativar a extensão, recarregue as páginas já abertas: o navegador pode manter scripts antigos nelas.
 
 ## Estrutura
 
@@ -81,13 +69,9 @@ backend/
   app/            API (FastAPI): pipeline, Groq, vocabulário, configuração
   data/           vocabulário ARASAAC em português (arasaac_vocabulario_br.json)
 extension/        código da extensão (conteúdo, background, voz, estilos, ícones)
-manifests/        manifestos do Edge e do Firefox
+manifests/        manifestos do Edge
 scripts/          build da extensão e instalação do OpenWordnet-PT
 ```
-
-## Privacidade
-
-Não envie dados pessoais ou sensíveis. O trecho confirmado é enviado ao backend e, a partir dele, à Groq. A extensão não envia o endereço da página, o título, o HTML nem dados de formulários. O sistema pode cometer erros: confira o significado do texto adaptado.
 
 ## Créditos e licenças
 
