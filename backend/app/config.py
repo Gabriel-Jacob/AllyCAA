@@ -15,7 +15,7 @@ class Settings:
     rate_limit: int = field(default_factory=lambda: int(os.getenv('ALLY_RATE_LIMIT', '10')))
     timeout: float = field(default_factory=lambda: float(os.getenv('ALLY_TIMEOUT_SECONDS', '30')))
     total_timeout: float = field(default_factory=lambda: float(os.getenv('ALLY_TOTAL_TIMEOUT_SECONDS', '45')))
-    vocabulary_path: str = field(default_factory=lambda: os.getenv('ALLY_VOCABULARY_PATH', str(Path(__file__).resolve().parents[1] / 'data' / 'arasaac_vocabulario_br.json')))
+    vocabulary_path: str = field(default_factory=lambda: os.getenv('ALLY_VOCABULARY_PATH') or str(Path(__file__).resolve().parents[1] / 'data' / 'arasaac_vocabulario_br.json'))
     model: str = 'openai/gpt-oss-120b'
 
     def __post_init__(self):
